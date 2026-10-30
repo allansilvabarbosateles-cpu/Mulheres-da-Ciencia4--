@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Grandes Mulheres da Ciência</title>
+
+  <style>
+    /* Configurações gerais */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background-color: #fcfbf9;
+      color: #35313d;
+      line-height: 1.7;
+    }
+
+    a {
+      color: #62449e;
+    }
+
+    a:focus-visible {
+      outline: 3px solid #8060c4;
+      outline-offset: 4px;
+    }
+
+    .pular {
+      position: absolute;
+      left: -9999px;
+    }
+
+    .pular:focus {
+      left: 12px;
+      top: 12px;
+      z-index: 10;
+      padding: 10px;
+      background: white;
+    }
+
+    /* Cabeçalho */
+    header {
+      padding: 22px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      border-bottom: 1px solid #e8e2ed;
+      background-color: #ffffff;
+    }
+
+    .logo {
+      font-size: 19px;
+      font-weight: bold;
+      color: #38245e;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #51495e;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: #8060c4;
+    }
+
+    /* Apresentação */
+    .apresentacao {
+      padding: 65px 9%;
+      background-color: #f1ecf7;
+      border-bottom: 1px solid #e4dcec;
+    }
+
+    .apresentacao .subtitulo {
+      color: #71539c;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      max-width: 700px;
+      color: #38245e;
+      font-size: 43px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .apresentacao p {
+      max-width: 650px;
+      color: #595263;
+      font-size: 17px;
+    }
+
+    .frase {
+      margin-top: 25px;
+      padding-left: 16px;
+      border-left: 3px solid #8060c4;
+      color: #62449e;
+      font-style: italic;
+    }
+
+    /* Seção das cientistas */
+    main {
+      padding: 55px 7%;
+    }
+
+    .titulo-secao {
+      color: #38245e;
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .introducao {
+      max-width: 650px;
+      margin-bottom: 30px;
+      color: #696272;
+      font-size: 15px;
+    }
+
+    .grade {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+    }
+
+    /* Cartões */
+    .cartao {
+      background-color: #ffffff;
+      border: 1px solid #e8e2ed;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .cartao img {
+      display: block;
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      background-color: #f1ecf7;
+    }
+
+    .conteudo {
+      padding: 20px;
+    }
+
+    .numero {
+      display: block;
+      color: #8060c4;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    .cartao h3 {
+      color: #38245e;
+      font-size: 21px;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .area {
+      display: inline-block;
+      color: #62449e;
+      background-color: #f1ecf7;
+      padding: 4px 9px;
+      margin-bottom: 12px;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+    }
+
+    .cartao p {
+      color: #625c6b;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .botao {
+      display: inline-block;
+      color: #62449e;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .botao:hover {
+      color: #38245e;
+    }
+
+    /* Rodapé */
+    footer {
+      padding: 28px 7%;
+      border-top: 1px solid #e8e2ed;
+      background-color: #f1ecf7;
+      color: #595263;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    footer p + p {
+      margin-top: 5px;
+    }
+
+    /* Adaptação para telas menores */
+    @media (max-width: 900px) {
+      .grade {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+    }
+
+    @media (max-width: 580px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 5%;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 12px 18px;
+      }
+
+      .apresentacao {
+        padding: 42px 7%;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      .apresentacao p {
+        font-size: 16px;
+      }
+
+      main {
+        padding: 38px 5%;
+      }
+
+      .titulo-secao {
+        font-size: 26px;
+      }
+
+      .grade {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .cartao img {
+        height: 270px;
+      }
+    }
+
+    /* Respeita quem prefere menos animações */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <a class="pular" href="#cientistas">
+    Ir para o conteúdo principal
+  </a>
+
+  <header id="inicio">
+    <div class="logo">Grandes Mulheres da Ciência</div>
+
+    <nav aria-label="Menu principal">
+      <a href="#inicio">Início</a>
+      <a href="#cientistas">Cientistas</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <section class="apresentacao" id="sobre">
+    <p class="subtitulo">História, conhecimento e descobertas</p>
+
+    <h1>Mulheres que transformaram a ciência</h1>
+
+    <p>
+      Ao longo da história, muitas mulheres contribuíram para o
+      desenvolvimento científico. Conheça seis pesquisadoras
+      cujas descobertas e trabalhos marcaram diferentes áreas
+      do conhecimento.
+    </p>
+
+    <p class="frase">
+      A ciência é construída por pessoas curiosas, dedicadas
+      e dispostas a descobrir o desconhecido.
+    </p>
+  </section>
+
+  <main id="cientistas">
+    <h2 class="titulo-secao">Conheça as cientistas</h2>
+
+    <p class="introducao">
+      Da matemática à biologia, estas mulheres ajudaram a ampliar
+      nosso conhecimento sobre o mundo.
+    </p>
+
+    <section class="grade" aria-label="Lista de cientistas">
+
+      <!-- Marie Curie -->
+      <article class="cartao">
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20Marie%20Curie.jpg"
+          alt="Retrato de Marie Curie"
+          loading="lazy"
+        >
+
+        <div class="conteudo">
+          <span class="numero">01 — Física e Química</span>
+          <h3>Marie Curie</h3>
+
+          <p>
+            Pioneira nos estudos sobre radioatividade, recebeu
+            dois Prêmios Nobel em áreas científicas diferentes.
+          </p>
+
+          <a
+            class="botao"
+            href="https://pt.wikipedia.org/wiki/Marie_Curie"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Saiba mais →
+          </a>
+        </div>
+      </article>
+
+      <!-- Ada Lovelace -->
+      <article class="cartao">
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Ada%20Lovelace%20portrait.jpg"
+          alt="Retrato de Ada Lovelace"
+          loading="lazy"
+        >
+
+        <div class="conteudo">
+          <span class="numero">02 — Matemática e Computação</span>
+          <h3>Ada Lovelace</h3>
+
+          <p>
+            Desenvolveu ideias pioneiras sobre programação ao
+            estudar a máquina analítica de Charles Babbage.
+          </p>
+
+          <a
+            class="botao"
+            href="https://pt.wikipedia.org/wiki/Ada_Lovelace"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Saiba mais →
+          </a>
+        </div>
+      </article>
+
+      <!-- Katherine Johnson -->
+      <article class="cartao">
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Katherine%20Johnson%201983.jpg"
+          alt="Retrato de Katherine Johnson"
+          loading="lazy"
+        >
+
+        <div class="conteudo">
+          <span class="numero">03 — Matemática</span>
+          <h3>Katherine Johnson</h3>
+
+          <p>
+            Matemática da NASA, realizou cálculos importantes
+            para missões espaciais dos Estados Unidos.
+          </p>
+
+          <a
+            class="botao"
+            href="https://pt.wikipedia.org/wiki/Katherine_Johnson"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Saiba mais →
+          </a>
+        </div>
+      </article>
+
+      <!-- Rosalind Franklin -->
+      <article class="cartao">
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Rosalind%20Franklin.jpg"
+          alt="Retrato de Rosalind Franklin"
+          loading="lazy"
+        >
+
+        <div class="conteudo">
+          <span class="numero">04 — Química e Biologia</span>
+          <h3>Rosalind Franklin</h3>
+
+          <p>
+            Suas pesquisas com difração de raios X contribuíram
+            para o conhecimento da estrutura do DNA.
+          </p>
+
+          <a
+            class="botao"
+            href="https://pt.wikipedia.org/wiki/Rosalind_Franklin"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Saiba mais →
+          </a>
+        </div>
+      </article>
+
+      <!-- Bertha Lutz -->
+      <article class="cartao">
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Bertha%20Lutz%2001.jpg"
+          alt="Retrato de Bertha Lutz"
+          loading="lazy"
+        >
+
+        <div class="conteudo">
+          <span class="numero">05 — Biologia</span>
+          <h3>Bertha Lutz</h3>
+
+          <p>
+            Cientista brasileira que estudou anfíbios e também
+            teve papel importante na defesa dos direitos das mulheres.
+          </p>
+
+          <a
+            class="botao"
+            href="https://pt.wikipedia.org/wiki/Bertha_Lutz"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Saiba mais →
+          </a>
+        </div>
+      </article>
+
+      <!-- Jane Goodall -->
+      <article class="cartao">
+        <img
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Jane-goodall.jpg"
+          alt="Retrato de Jane Goodall"
+          loading="lazy"
+        >
+
+        <div class="conteudo">
+          <span class="numero">06 — Primatologia</span>
+          <h3>Jane Goodall</h3>
+
+          <p>
+            Pesquisadora reconhecida por seus estudos sobre
+            o comportamento dos chimpanzés em ambiente natural.
+          </p>
+
+          <a
+            class="botao"
+            href="https://pt.wikipedia.org/wiki/Jane_Goodall"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Saiba mais →
+          </a>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <footer id="contato">
+    <p><strong>Grandes Mulheres da Ciência</strong></p>
+    <p>Conhecimento, pesquisa e igualdade de oportunidades.</p>
+    <p>Projeto educativo sobre mulheres na ciência.</p>
+  </footer>
+
+</body>
+</html>
